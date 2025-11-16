@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FormData Test</title>
+</head>
+<body>
+    <h1>FormData Debug Test</h1>
+    <input type="file" id="fileInput" accept="audio/*">
+    <button onclick="testFormData()">Test FormData</button>
+    <pre id="output"></pre>
+
+    <script>
+        function testFormData() {
+            const file = document.getElementById('fileInput').files[0];
+            if (!file) {
+                document.getElementById('output').textContent = 'No file selected';
+                return;
+            }
+
+            const agentName = 'elvia';
+            const agentEmail = 'elviamarcela17@gmail.com';
+
+            const formData = new FormData();
+            formData.append("audio", file);
+            formData.append("analyze_channels", "both");
+            
+            if (agentName && agentName.trim()) {
+                console.log('✅ Appending agentName:', agentName.trim());
+                formData.append("agent_name", agentName.trim());
+            } else {
+                console.log('⏭️  Skipping agentName - falsy or empty');
+            }
+            
+            if (agentEmail && agentEmail.trim()) {
+                console.log('✅ Appending agentEmail:', agentEmail.trim());
+                formData.append("agent_email", agentEmail.trim());
+            } else {
+                console.log('⏭️  Skipping agentEmail - falsy or empty');
+            }
+
+            const entries = Array.from(formData.entries());
+            let output = 'FormData Entries:\n';
+            entries.forEach(([key, value]) => {
+                if (value instanceof File) {
+                    output += `  ${key}: [File] ${value.name} (${value.size} bytes)\n`;
+                } else {
+                    output += `  ${key}: ${value}\n`;
+                }
+            });
+
+            document.getElementById('output').textContent = output;
+
+            // Now send it
+            console.log('Sending to backend...');
+            fetch('http://localhost:8000/api/feeling-analytics/analyze', {
+                method: 'POST',
+                body: formData
+            })
+            .then(r => r.json())
+            .then(data => {
+                console.log('Response:', data);
+                document.getElementById('output').textContent += '\n\nResponse:\n' + JSON.stringify(data, null, 2);
+            })
+            .catch(e => {
+                console.error('Error:', e);
+                document.getElementById('output').textContent += '\n\nError: ' + e.message;
+            });
+        }
+    </script>
+</body>
+</html>

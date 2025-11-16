@@ -1,0 +1,407 @@
+# AI Agent Multi-Service Platform
+
+## Descripción
+
+Plataforma avanzada de análisis de IA que integra múltiples agentes especializados para análisis de sentimientos de audio multichannel y consultas legales automatizadas. El proyecto utiliza modelos de última generación como **Whisper**, **Empathic Insight** y **LangChain** con integración a **HuggingFace** y **OpenAI**.
+
+---
+
+## Arquitectura del Sistema
+
+### Servicios Disponibles
+- **Análisis de Sentimientos de Audio** - Análisis multichannel con separación estéreo
+- **Chatbot Legal** - Consultas sobre normativas peruanas con RAG
+- **Agente NLQ en SQL** - (Próximamente)
+- **Agente de Ciencia de Datos** - (Próximamente)
+
+### Stack Tecnológico
+- **Frontend**: Next.js 15.4.5 + React 19 + TypeScript + Tailwind CSS
+- **Backend**: FastAPI + Python 3.10 + PyTorch + HuggingFace
+- **Base de Datos**: PostgreSQL + ChromaDB (Vector Database)
+- **IA/ML**: Whisper, Empathic Insight, LangChain, Sentence Transformers
+- **Deployment**: Docker + Docker Compose + Nginx
+
+---
+
+## Estructura del Proyecto
+
+```
+AI-AGENT-PROJECT/
+├── backend/                          # Backend FastAPI unificado
+│   ├── main.py                      # API principal que combina todos los servicios
+│   ├── start_services.py            # Script de inicio flexible
+│   ├── requirements.txt             # Dependencias Python completas
+│   ├── Dockerfile                   # Imagen Docker del backend
+│   │
+│   ├── feeling_analytics/           # Servicio de Análisis de Sentimientos
+│   │   ├── feeling_analyser_api.py  # API de análisis de sentimientos
+│   │   ├── models/
+│   │   │   └── audio.py            # Modelos de datos de audio
+│   │   └── services/
+│   │       ├── sentiment_analyzer.py # Lógica de análisis
+│   │       └── database_service.py   # Servicio de base de datos
+│   │
+│   ├── chat_legal/                  # Servicio de Chat Legal
+│   │   ├── legal_api.py            # API del chatbot legal
+│   │   ├── chat3.py                # Motor de chat con LangChain
+│   │   ├── upload_data.py          # Procesamiento de PDFs
+│   │   └── src/
+│   │       └── pdf_reports/        # Documentos legales (PDFs)
+│   │
+│   ├── models/                      # Modelos de IA
+│   │   ├── empathic_insight/       # 70+ modelos de emociones
+│   │   └── whisper_model/          # Modelo de transcripción
+│   │
+│   └── chroma_db_dir/              # Base de datos vectorial
+│
+├── frontend/                        # Frontend Next.js
+│   ├── app/                        # Páginas principales
+│   │   ├── page.tsx                # Dashboard principal de agentes
+│   │   ├── feeling-analytics/      # Página de análisis de sentimientos
+│   │   └── chat-legal/             # Página de chat legal
+│   │
+│   ├── shared/                     # Componentes compartidos
+│   │   ├── components/
+│   │   │   └── agent-card.tsx      # Tarjetas de agentes
+│   │   └── data/
+│   │       └── agents.ts           # Configuración de agentes
+│   │
+│   ├── feeling-analytics/          # Frontend de análisis de sentimientos
+│   │   ├── components/
+│   │   │   ├── sentiment-visualization.tsx
+│   │   │   └── multichannel-analyzer.tsx
+│   │   ├── pages/                  # Páginas específicas
+│   │   ├── services/               # Servicios API
+│   │   └── types/                  # Tipos TypeScript
+│   │
+│   ├── chat-legal/                 # Frontend de chat legal
+│   │   ├── components/
+│   │   │   └── legal-chatbot.tsx   # Componente principal de chat
+│   │   ├── services/
+│   │   │   └── api.ts              # Cliente API del chat legal
+│   │   └── types/
+│   │       └── index.ts            # Tipos del chat legal
+│   │
+│   ├── components/                 # Componentes UI (Radix UI)
+│   │   └── ui/                     # Sistema de diseño completo
+│   ├── styles/
+│   │   └── globals.css             # Estilos globales con tema elvIA
+│   ├── types/                      # Tipos globales
+│   ├── package.json                # Dependencias frontend
+│   └── Dockerfile                  # Imagen Docker del frontend
+│
+├── docker-compose.yml               # Orquestación de servicios
+├── docker-compose.prod.yml         # Configuración de producción
+├── .env                            # Variables de entorno
+├── .env.example                    # Ejemplo de variables
+├── .gitignore                      # Archivos ignorados
+└── README.md                       # Esta documentación
+```
+
+---
+
+## Despliegue Rápido
+
+### Opción 1: Docker Compose (Recomendado)
+
+```bash
+# 1. Clonar repositorio
+git clone <repository-url>
+cd ai-agent-project
+
+# 2. Configurar variables de entorno
+cp .env.example .env
+# Editar .env con tus credenciales
+
+# 3. Levantar servicios completos
+docker-compose up --build
+
+# 4. Acceder a los servicios
+# Frontend: http://localhost:3000
+# Backend API: http://localhost:8000/docs
+# Sentiment API: http://localhost:8000/api/feeling-analytics/docs
+# Legal Chat API: http://localhost:8000/legal/docs
+```
+
+### Opción 2: Desarrollo Local
+
+```bash
+# Backend
+cd backend
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# venv\Scripts\activate   # Windows
+pip install -r requirements.txt
+python main.py
+
+# Frontend (nueva terminal)
+cd frontend
+npm install
+npm run dev
+```
+
+### Opción 3: Servicios Independientes
+
+```bash
+# Solo análisis de sentimientos
+cd backend
+python start_services.py feeling
+
+# Solo chat legal
+cd backend
+python start_services.py legal
+
+# Servicios combinados
+cd backend
+python start_services.py combined
+```
+
+---
+
+## Endpoints de API
+
+### API Principal (`http://localhost:8000`)
+- `GET /` - Información del sistema
+- `GET /health` - Estado de salud de todos los servicios
+- `GET /docs` - Documentación Swagger unificada
+
+### Análisis de Sentimientos (`/api/feeling-analytics/`)
+- `POST /analyze` - Análizar audio multichannel
+- `GET /records` - Historial de análisis
+- `GET /statistics` - Estadísticas generales
+- `DELETE /records/{id}` - Eliminar registro
+
+### Chat Legal (`/legal/`)
+- `POST /chat` - Enviar mensaje al chatbot
+- `GET /health` - Estado del sistema legal
+- `POST /upload` - Subir documentos PDF (futuro)
+
+---
+
+## Modelos y Tecnologías IA
+
+### Análisis de Sentimientos
+- **Whisper** - Transcripción de audio a texto
+- **Empathic Insight** - 40+odelos de análisis emocional
+  - Emociones: Alegría, Tristeza, Ira, Miedo, etc.
+  - Métricas: Valencia, Activación, Autenticidad
+  - Características: Edad, Género, Calidad de grabación
+
+### Chat Legal
+- **LangChain** - Framework de procesamiento de documentos
+- **HuggingFace Embeddings** - Vectorización de texto
+- **ChromaDB** - Base de datos vectorial para RAG
+- **OpenAI/HuggingFace** - Modelo de lenguaje para respuestas
+
+### Procesamiento de Audio
+- **Separación de canales estéreo** automática
+- **Análisis multichannel** independiente
+- **Formatos soportados**: MP3, WAV, M4A, OGG, FLAC
+
+---
+
+## Variables de Entorno
+
+```env
+# Backend Configuration
+DATABASE_URL=postgresql://user:password@localhost:5432/ai_agents
+HF_TOKEN=hf_your_huggingface_token_here
+OPENAI_API_KEY=your_openai_key_here
+
+# Frontend Configuration  
+NEXT_PUBLIC_API_URL=http://localhost:8000
+NEXT_PUBLIC_LEGAL_CHAT_URL=http://localhost:8000/legal
+
+# CORS Configuration
+CORS_ORIGINS=["http://localhost:3000"]
+
+# Model Paths
+EMPATHIC_MODELS_PATH=./models/empathic_insight/
+WHISPER_MODEL_PATH=./models/whisper_model/
+PDF_REPORTS_PATH=./chat_legal/src/pdf_reports/
+```
+
+---
+
+## Dependencias Principales
+
+### Frontend (~50 paquetes)
+```json
+{
+  "next": "^15.4.5",
+  "react": "^19.1.1", 
+  "typescript": "^5.8.3",
+  "tailwindcss": "^3.4.17",
+  "@radix-ui/react-*": "1.x.x",
+  "chart.js": "^4.5.0",
+  "lucide-react": "^0.454.0"
+}
+```
+
+### Backend (~35 paquetes)
+```python
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+torch==2.0.1
+transformers==4.33.0
+langchain==0.0.335
+chromadb==0.4.18
+psycopg2-binary==2.9.7
+librosa==0.10.1
+```
+
+---
+
+## Despliegue en Producción
+
+### AWS EC2 Deployment
+
+```bash
+# 1. Preparar servidor
+sudo apt update && sudo apt upgrade -y
+sudo apt install docker.io docker-compose nginx certbot -y
+
+# 2. Configurar SSL
+sudo certbot --nginx -d your-domain.com
+
+# 3. Desplegar aplicación
+git clone <repository-url>
+cd ai-agent-project
+docker-compose -f docker-compose.prod.yml up -d
+
+# 4. Configurar proxy reverso (Nginx)
+sudo nano /etc/nginx/sites-available/ai-agent
+# Configurar proxy_pass hacia localhost:3000 y localhost:8000
+```
+
+### Docker Production
+```yaml
+# docker-compose.prod.yml incluye:
+- Nginx como reverse proxy
+- SSL/TLS certificates
+- Environment variables para producción
+- Health checks
+- Resource limits
+- Multi-stage builds optimizados
+```
+
+---
+
+## Características Principales
+
+### Análisis de Sentimientos de Audio
+- Análisis multichannel automático (agente vs cliente)
+- 40+ emociones detectadas simultáneamente
+- Separación estéreo automática
+- Visualizaciones interactivas con Chart.js
+- Historial completo con filtros y búsqueda
+- Dashboard estadístico con métricas
+
+### Chatbot Legal
+- RAG (Retrieval Augmented Generation) con documentos legales
+- Base de conocimiento de normativas peruanas
+- Respuestas contextualizadas con fuentes
+- Interfaz de chat moderna y responsiva
+- Historial de conversaciones por sesión (futuro)
+- Carga de PDFs personalizados 
+
+### Interfaz de Usuario
+- Diseño glassmorphism con tema elvIA
+- Componentes Radix UI accesibles
+- Responsive design para móviles
+- Modo oscuro automático
+- Navegación intuitiva entre agentes
+- Feedback visual en tiempo real
+
+---
+
+## Desarrollo y Contribución
+
+### Estructura de Branches
+- `main` - Producción estable
+- `develop` - Desarrollo activo
+- `feature/*` - Nuevas características
+- `hotfix/*` - Correcciones urgentes
+
+### Scripts de Desarrollo
+```bash
+# Frontend
+npm run dev          # Servidor de desarrollo
+npm run build        # Build de producción
+npm run lint         # Linting
+npm run type-check   # Verificación de tipos
+
+# Backend
+python start_services.py combined  # Todos los servicios
+python -m pytest                   # Tests unitarios
+python -m uvicorn main:app --reload # Desarrollo con reload
+```
+
+### Testing
+```bash
+# Frontend
+npm run test
+
+# Backend  
+pytest backend/tests/
+pytest backend/tests/test_sentiment_analyzer.py
+pytest backend/tests/test_legal_chat.py
+```
+
+---
+
+## Troubleshooting
+
+### Problemas Comunes
+
+**1. Error "Sistema no inicializado"**
+```bash
+# Verificar que los PDFs estén en la carpeta correcta
+ls backend/chat_legal/src/pdf_reports/
+# Reiniciar el servicio legal
+python start_services.py legal
+```
+
+**2. Modelos no encontrados**
+```bash
+# Descargar modelos manualmente
+python backend/models/empathic_insight/download_models.py
+```
+
+**3. Error de CORS**
+```bash
+# Verificar CORS_ORIGINS en .env
+CORS_ORIGINS=["http://localhost:3000"]
+```
+
+**4. Puerto ocupado**
+```bash
+# Liberar puertos
+sudo lsof -ti:8000 | xargs kill -9
+sudo lsof -ti:3000 | xargs kill -9
+```
+
+---
+
+
+## Contribuidores
+
+### Equipo Principal
+- **Eduardo** - Full Stack Developer & ML Engineer
+- **Glitter Team** - Arquitectura y Diseño
+
+
+
+
+<div align="center">
+  <h3>AI Agent Multi-Service Platform - Centro de Análisis Avanzado</h3>
+  <p>
+    <strong>Made with ❤️ by Glitter Team</strong>
+  </p>
+  <p>
+    <img src="https://img.shields.io/badge/Next.js-15.4.5-black?style=for-the-badge&logo=next.js" alt="Next.js"/>
+    <img src="https://img.shields.io/badge/FastAPI-0.104.1-green?style=for-the-badge&logo=fastapi" alt="FastAPI"/>
+    <img src="https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge&logo=python" alt="Python"/>
+    <img src="https://img.shields.io/badge/Docker-Ready-blue?style=for-the-badge&logo=docker" alt="Docker"/>
+  </p>
+</div>

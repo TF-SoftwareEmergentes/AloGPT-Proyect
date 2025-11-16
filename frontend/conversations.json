@@ -1,0 +1,531 @@
+    {"conversations": [
+        {
+            "conversationEnd": "2025-05-09T13:01:30.537Z",
+            "conversationId": "00f4f2af-ffbc-4a3f-8baf-d3eea0472afc",
+            "conversationStart": "2025-05-09T12:54:39.465Z",
+            "divisionIds": [
+                "382cc33b-156f-4192-bf90-571357019a96"
+            ],
+            "mediaStatsMinConversationMos": 3.394523484159465,
+            "mediaStatsMinConversationRFactor": 90.8682861328125,
+            "originatingDirection": "outbound",
+            "participants": [
+                {
+                    "externalContactId": "a34139e3-2f33-491b-8cd9-d305e5dedc12",
+                    "participantId": "70f2ef2b-cc47-4039-89a0-fa36c9c43df7",
+                    "participantName": "Mobile Number, Peru",
+                    "purpose": "customer",
+                    "sessions": [
+                        {
+                            "ani": "tel:+51123456789",
+                            "direction": "outbound",
+                            "dnis": "tel:+51952646016",
+                            "edgeId": "146e51a7-2521-4684-bf4e-c9e98fbc33c1",
+                            "eligibleAgentCounts": [
+                                2
+                            ],
+                            "mediaType": "voice",
+                            "outboundCampaignId": "6d1a2155-a1f8-4e5d-8ed7-9ea1ea53bca1",
+                            "outboundContactId": "118027759",
+                            "outboundContactListId": "a5bf7824-905d-4c32-a030-b49e75309bd9",
+                            "protocolCallId": "d7dad294-aeed-437e-b388-6309e57a738e",
+                            "provider": "Edge",
+                            "recording": true,
+                            "remoteNameDisplayable": "Mobile Number, Peru",
+                            "requestedRoutings": [
+                                "Standard"
+                            ],
+                            "selectedAgentId": "f6a6a84f-c0a1-4cae-9389-de50fc52447c",
+                            "sessionDnis": "tel:+51952646016",
+                            "sessionId": "f319e296-bfa3-3c9a-be54-c38590f87a11",
+                            "usedRouting": "Standard",
+                            "mediaEndpointStats": [
+                                {
+                                    "codecs": [
+                                        "audio/opus"
+                                    ],
+                                    "eventTime": "2025-05-09T12:55:08.999Z",
+                                    "maxLatencyMs": 31,
+                                    "minMos": 4.897917180243621,
+                                    "minRFactor": 93.14020538330078,
+                                    "receivedPackets": 1454
+                                },
+                                {
+                                    "codecs": [
+                                        "audio/opus"
+                                    ],
+                                    "eventTime": "2025-05-09T12:55:09.556Z",
+                                    "maxLatencyMs": 31,
+                                    "minMos": 4.883025923177961,
+                                    "minRFactor": 92.4705581665039,
+                                    "receivedPackets": 29
+                                },
+                                {
+                                    "codecs": [
+                                        "audio/opus"
+                                    ],
+                                    "eventTime": "2025-05-09T12:55:10.169Z",
+                                    "maxLatencyMs": 30,
+                                    "minMos": 4.884514327155808,
+                                    "minRFactor": 92.53585815429688,
+                                    "receivedPackets": 21
+                                },
+                                {
+                                    "codecs": [
+                                        "audio/opus"
+                                    ],
+                                    "discardedPackets": 153,
+                                    "eventTime": "2025-05-09T13:01:28.377Z",
+                                    "maxLatencyMs": 414,
+                                    "minMos": 4.850621810079895,
+                                    "minRFactor": 91.12419128417969,
+                                    "receivedPackets": 18922
+                                },
+                                {
+                                    "codecs": [
+                                        "audio/G729"
+                                    ],
+                                    "discardedPackets": 3,
+                                    "eventTime": "2025-05-09T13:01:28.430Z",
+                                    "maxLatencyMs": 55,
+                                    "minMos": 3.394523484159465,
+                                    "minRFactor": 91.07273864746094,
+                                    "receivedPackets": 20324
+                                }
+                            ],
+                            "metrics": [
+                                {
+                                    "emitDate": "2025-05-09T12:54:39.479Z",
+                                    "name": "nOutboundAttempted",
+                                    "value": 1
+                                },
+                                {
+                                    "emitDate": "2025-05-09T12:55:05.718Z",
+                                    "name": "nConnected",
+                                    "value": 1
+                                },
+                                {
+                                    "emitDate": "2025-05-09T13:01:28.357Z",
+                                    "name": "tConnected",
+                                    "value": 382639
+                                }
+                            ],
+                            "segments": [
+                                {
+                                    "conference": false,
+                                    "queueId": "1521cd3a-9aad-415b-b26a-121d1909ea61",
+                                    "segmentEnd": "2025-05-09T12:55:05.718Z",
+                                    "segmentStart": "2025-05-09T12:54:39.479Z",
+                                    "segmentType": "dialing"
+                                },
+                                {
+                                    "conference": false,
+                                    "disconnectType": "peer",
+                                    "queueId": "1521cd3a-9aad-415b-b26a-121d1909ea61",
+                                    "segmentEnd": "2025-05-09T13:01:28.357Z",
+                                    "segmentStart": "2025-05-09T12:55:05.718Z",
+                                    "segmentType": "interact"
+                                }
+                            ]
+                        }
+                    ],
+                    "attributes": {
+                        "Telefono_4": "+51947906085",
+                        "scriptId": "866be683-0715-43ad-82f2-3e7ae5e40bd4",
+                        "Telefono_3": "+51952646016",
+                        "abandonMilliseconds": "25000",
+                        "dialerContactId": "118027759",
+                        "Telefono_2": "+51952646016",
+                        "dialerContactListId": "a5bf7824-905d-4c32-a030-b49e75309bd9",
+                        "Telefono_1": "+51952646016",
+                        "asociar_contacto": "success",
+                        "dialerCampaignId": "6d1a2155-a1f8-4e5d-8ed7-9ea1ea53bca1",
+                        "dialerInteractionId": "064c6999-80d3-4e39-9d0a-67160b228d38"
+                    }
+                },
+                {
+                    "participantId": "f500f404-d9d9-4342-b431-1fcac4bc5dc9",
+                    "participantName": "BRIPLEY",
+                    "purpose": "outbound",
+                    "sessions": [
+                        {
+                            "ani": "tel:+51123456789",
+                            "detectedSpeechEnd": "2025-05-09T12:55:08.267Z",
+                            "detectedSpeechStart": "2025-05-09T12:55:07.947Z",
+                            "direction": "outbound",
+                            "dispositionAnalyzer": "speech.person",
+                            "dispositionName": "disposition.classification.callable.person",
+                            "dnis": "tel:+51952646016",
+                            "edgeId": "961cff1a-3c6f-421a-9c1b-7a69f81a6e2a",
+                            "mediaType": "voice",
+                            "outboundCampaignId": "6d1a2155-a1f8-4e5d-8ed7-9ea1ea53bca1",
+                            "outboundContactId": "118027759",
+                            "outboundContactListId": "a5bf7824-905d-4c32-a030-b49e75309bd9",
+                            "peerId": "f319e296-bfa3-3c9a-be54-c38590f87a11",
+                            "protocolCallId": "4b71a7a9-f924-4e47-9c3b-30ebc80748b9",
+                            "provider": "Edge",
+                            "remote": "Mobile Number, Peru",
+                            "remoteNameDisplayable": "BRIPLEY",
+                            "sessionDnis": "tel:+51952646016",
+                            "sessionId": "5fc71d30-e819-4dea-ac14-db073d288388",
+                            "segments": [
+                                {
+                                    "conference": false,
+                                    "queueId": "1521cd3a-9aad-415b-b26a-121d1909ea61",
+                                    "segmentEnd": "2025-05-09T12:55:08.910Z",
+                                    "segmentStart": "2025-05-09T12:55:08.910Z",
+                                    "segmentType": "system"
+                                },
+                                {
+                                    "conference": false,
+                                    "queueId": "1521cd3a-9aad-415b-b26a-121d1909ea61",
+                                    "segmentEnd": "2025-05-09T12:55:09.119Z",
+                                    "segmentStart": "2025-05-09T12:55:09.119Z",
+                                    "segmentType": "wrapup",
+                                    "wrapUpCode": "ININ-OUTBOUND-TRANSFERRED-TO-FLOW"
+                                }
+                            ]
+                        }
+                    ],
+                    "attributes": {
+                        "abandonMilliseconds": "25000",
+                        "scriptId": "866be683-0715-43ad-82f2-3e7ae5e40bd4",
+                        "dialerContactId": "118027759",
+                        "dialerContactListId": "a5bf7824-905d-4c32-a030-b49e75309bd9",
+                        "dialerCampaignId": "6d1a2155-a1f8-4e5d-8ed7-9ea1ea53bca1",
+                        "dialerInteractionId": "064c6999-80d3-4e39-9d0a-67160b228d38"
+                    }
+                },
+                {
+                    "participantId": "a4cd329d-68d3-486c-a5d4-627103bc4e5c",
+                    "participantName": "OUT_COBRANZAS",
+                    "purpose": "ivr",
+                    "sessions": [
+                        {
+                            "ani": "tel:+51123456789",
+                            "direction": "inbound",
+                            "dnis": "tel:+51952646016",
+                            "edgeId": "cf50905c-2930-4321-bca0-6412d9d91ae3",
+                            "mediaType": "voice",
+                            "outboundCampaignId": "6d1a2155-a1f8-4e5d-8ed7-9ea1ea53bca1",
+                            "outboundContactId": "118027759",
+                            "outboundContactListId": "a5bf7824-905d-4c32-a030-b49e75309bd9",
+                            "peerId": "f319e296-bfa3-3c9a-be54-c38590f87a11",
+                            "protocolCallId": "ce4c5729-047a-44a1-8a01-73e6ca4bf7d0",
+                            "provider": "Edge",
+                            "remote": "Mobile Number, Peru",
+                            "remoteNameDisplayable": "OUT_COBRANZAS",
+                            "sessionDnis": "tel:+51952646016",
+                            "sessionId": "38319459-595c-33f6-9dfd-bf10d3e9ff47",
+                            "mediaEndpointStats": [
+                                {
+                                    "codecs": [
+                                        "audio/opus"
+                                    ],
+                                    "eventTime": "2025-05-09T12:55:09.566Z",
+                                    "maxLatencyMs": 30,
+                                    "minMos": 4.886730811814366,
+                                    "minRFactor": 92.63375091552734,
+                                    "receivedPackets": 30
+                                }
+                            ],
+                            "flow": {
+                                "endingLanguage": "es-us",
+                                "entryReason": "6d1a2155-a1f8-4e5d-8ed7-9ea1ea53bca1",
+                                "entryType": "outbound",
+                                "exitReason": "TRANSFER",
+                                "flowId": "04828c0c-06b7-44fa-a111-0cee1213f3d4",
+                                "flowName": "OUT_COBRANZAS",
+                                "flowType": "OUTBOUNDCALL",
+                                "flowVersion": "7.0",
+                                "startingLanguage": "es-us",
+                                "transferTargetAddress": "1521cd3a-9aad-415b-b26a-121d1909ea61",
+                                "transferTargetName": "AG_CAMP_GRUPO1",
+                                "transferType": "ACD"
+                            },
+                            "metrics": [
+                                {
+                                    "emitDate": "2025-05-09T12:55:09.112Z",
+                                    "name": "nFlow",
+                                    "value": 1
+                                },
+                                {
+                                    "emitDate": "2025-05-09T12:55:09.522Z",
+                                    "name": "tIvr",
+                                    "value": 587
+                                },
+                                {
+                                    "emitDate": "2025-05-09T12:55:09.524Z",
+                                    "name": "tFlow",
+                                    "value": 412
+                                },
+                                {
+                                    "emitDate": "2025-05-09T12:55:09.524Z",
+                                    "name": "tFlowExit",
+                                    "value": 412
+                                }
+                            ],
+                            "segments": [
+                                {
+                                    "conference": false,
+                                    "queueId": "1521cd3a-9aad-415b-b26a-121d1909ea61",
+                                    "segmentEnd": "2025-05-09T12:55:08.935Z",
+                                    "segmentStart": "2025-05-09T12:55:08.922Z",
+                                    "segmentType": "system"
+                                },
+                                {
+                                    "conference": false,
+                                    "disconnectType": "transfer",
+                                    "queueId": "1521cd3a-9aad-415b-b26a-121d1909ea61",
+                                    "segmentEnd": "2025-05-09T12:55:09.522Z",
+                                    "segmentStart": "2025-05-09T12:55:08.935Z",
+                                    "segmentType": "ivr",
+                                    "wrapUpCode": "e7339601-0912-4e1b-a169-c4fa74e0e2a5"
+                                },
+                                {
+                                    "conference": false,
+                                    "disconnectType": "transfer",
+                                    "queueId": "1521cd3a-9aad-415b-b26a-121d1909ea61",
+                                    "segmentEnd": "2025-05-09T12:55:09.618Z",
+                                    "segmentStart": "2025-05-09T12:55:09.618Z",
+                                    "segmentType": "wrapup",
+                                    "wrapUpCode": "e7339601-0912-4e1b-a169-c4fa74e0e2a5"
+                                }
+                            ]
+                        }
+                    ],
+                    "attributes": {
+                        "abandonMilliseconds": "25000",
+                        "scriptId": "866be683-0715-43ad-82f2-3e7ae5e40bd4",
+                        "dialerContactId": "118027759",
+                        "dialerContactListId": "a5bf7824-905d-4c32-a030-b49e75309bd9",
+                        "dialerCampaignId": "6d1a2155-a1f8-4e5d-8ed7-9ea1ea53bca1",
+                        "dialerInteractionId": "064c6999-80d3-4e39-9d0a-67160b228d38"
+                    }
+                },
+                {
+                    "participantId": "f41fc0b7-a3e1-45ae-8734-1ea55366450d",
+                    "participantName": "AG_CAMP_GRUPO1",
+                    "purpose": "acd",
+                    "sessions": [
+                        {
+                            "ani": "tel:+51123456789",
+                            "destinationAddresses": [
+                                "sip:lhuayte%40bancoripley.com.pe@localhost"
+                            ],
+                            "direction": "inbound",
+                            "dnis": "tel:+51952646016",
+                            "edgeId": "3972d534-492f-49be-956e-ad7a503f9ce4",
+                            "eligibleAgentCounts": [
+                                2
+                            ],
+                            "flowInType": "ivr",
+                            "mediaType": "voice",
+                            "outboundCampaignId": "6d1a2155-a1f8-4e5d-8ed7-9ea1ea53bca1",
+                            "outboundContactId": "118027759",
+                            "outboundContactListId": "a5bf7824-905d-4c32-a030-b49e75309bd9",
+                            "peerId": "f319e296-bfa3-3c9a-be54-c38590f87a11",
+                            "protocolCallId": "130a8dd8-aa59-4df7-b615-52f246449b5e",
+                            "provider": "Edge",
+                            "remote": "Mobile Number, Peru",
+                            "remoteNameDisplayable": "AG_CAMP_GRUPO1",
+                            "requestedRoutings": [
+                                "Standard"
+                            ],
+                            "selectedAgentId": "f6a6a84f-c0a1-4cae-9389-de50fc52447c",
+                            "sessionDnis": "tel:+51952646016",
+                            "sessionId": "ad4fea55-8807-36b5-a321-80f5ff3d841c",
+                            "usedRouting": "Standard",
+                            "mediaEndpointStats": [
+                                {
+                                    "codecs": [
+                                        "audio/opus"
+                                    ],
+                                    "eventTime": "2025-05-09T12:55:10.159Z",
+                                    "maxLatencyMs": 38,
+                                    "minMos": 4.880896813525749,
+                                    "minRFactor": 92.37773895263672,
+                                    "receivedPackets": 21
+                                }
+                            ],
+                            "metrics": [
+                                {
+                                    "emitDate": "2025-05-09T12:55:09.625Z",
+                                    "name": "nOffered",
+                                    "value": 1
+                                },
+                                {
+                                    "emitDate": "2025-05-09T12:55:10.094Z",
+                                    "name": "tAcd",
+                                    "value": 469
+                                }
+                            ],
+                            "segments": [
+                                {
+                                    "conference": false,
+                                    "queueId": "1521cd3a-9aad-415b-b26a-121d1909ea61",
+                                    "segmentEnd": "2025-05-09T12:55:09.625Z",
+                                    "segmentStart": "2025-05-09T12:55:09.571Z",
+                                    "segmentType": "delay"
+                                },
+                                {
+                                    "conference": false,
+                                    "disconnectType": "transfer",
+                                    "queueId": "1521cd3a-9aad-415b-b26a-121d1909ea61",
+                                    "segmentEnd": "2025-05-09T12:55:10.094Z",
+                                    "segmentStart": "2025-05-09T12:55:09.625Z",
+                                    "segmentType": "interact",
+                                    "sipResponseCodes": [
+                                        410
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "attributes": {
+                        "abandonMilliseconds": "25000",
+                        "scriptId": "866be683-0715-43ad-82f2-3e7ae5e40bd4",
+                        "dialerContactId": "118027759",
+                        "dialerContactListId": "a5bf7824-905d-4c32-a030-b49e75309bd9",
+                        "dialerCampaignId": "6d1a2155-a1f8-4e5d-8ed7-9ea1ea53bca1",
+                        "dialerInteractionId": "064c6999-80d3-4e39-9d0a-67160b228d38"
+                    }
+                },
+                {
+                    "participantId": "30afe512-8a2d-4c69-ab1f-6be1ffa150d9",
+                    "purpose": "agent",
+                    "userId": "f6a6a84f-c0a1-4cae-9389-de50fc52447c",
+                    "sessions": [
+                        {
+                            "ani": "tel:+51123456789",
+                            "direction": "inbound",
+                            "dnis": "tel:+51952646016",
+                            "edgeId": "3972d534-492f-49be-956e-ad7a503f9ce4",
+                            "eligibleAgentCounts": [
+                                2
+                            ],
+                            "mediaType": "voice",
+                            "outboundCampaignId": "6d1a2155-a1f8-4e5d-8ed7-9ea1ea53bca1",
+                            "outboundContactId": "118027759",
+                            "outboundContactListId": "a5bf7824-905d-4c32-a030-b49e75309bd9",
+                            "peerId": "f319e296-bfa3-3c9a-be54-c38590f87a11",
+                            "protocolCallId": "4832fa18-9b68-4989-8c47-9b9902ff627e",
+                            "provider": "Edge",
+                            "remote": "Mobile Number, Peru",
+                            "requestedRoutings": [
+                                "Standard"
+                            ],
+                            "selectedAgentId": "f6a6a84f-c0a1-4cae-9389-de50fc52447c",
+                            "sessionDnis": "sip:65655f15f7f5981af4eb6d68+bancoripleyperu.orgspan.com@localhost",
+                            "sessionId": "f30f3b00-c439-3a56-bfdc-d5b7cfc6fb42",
+                            "usedRouting": "Standard",
+                            "mediaEndpointStats": [
+                                {
+                                    "codecs": [
+                                        "audio/opus"
+                                    ],
+                                    "discardedPackets": 172,
+                                    "eventTime": "2025-05-09T13:01:28.398Z",
+                                    "maxLatencyMs": 409,
+                                    "minMos": 4.844097695047149,
+                                    "minRFactor": 90.8682861328125,
+                                    "receivedPackets": 18917
+                                },
+                                {
+                                    "codecs": [
+                                        "audio/opus"
+                                    ],
+                                    "discardedPackets": 3,
+                                    "eventTime": "2025-05-09T13:01:28.398Z",
+                                    "maxLatencyMs": 69,
+                                    "minMos": 4.89280178279797,
+                                    "minRFactor": 92.90594482421875,
+                                    "receivedPackets": 18915
+                                }
+                            ],
+                            "metrics": [
+                                {
+                                    "emitDate": "2025-05-09T12:55:10.045Z",
+                                    "name": "nOutboundConnected",
+                                    "value": 1
+                                },
+                                {
+                                    "emitDate": "2025-05-09T12:55:10.045Z",
+                                    "name": "tAlert",
+                                    "value": 63
+                                },
+                                {
+                                    "emitDate": "2025-05-09T12:55:10.045Z",
+                                    "name": "tAnswered",
+                                    "value": 469
+                                },
+                                {
+                                    "emitDate": "2025-05-09T13:01:28.353Z",
+                                    "name": "tTalk",
+                                    "value": 378308
+                                },
+                                {
+                                    "emitDate": "2025-05-09T13:01:28.353Z",
+                                    "name": "tTalkComplete",
+                                    "value": 378308
+                                },
+                                {
+                                    "emitDate": "2025-05-09T13:01:30.537Z",
+                                    "name": "tAcw",
+                                    "value": 2184
+                                },
+                                {
+                                    "emitDate": "2025-05-09T13:01:30.537Z",
+                                    "name": "tHandle",
+                                    "value": 380492
+                                }
+                            ],
+                            "segments": [
+                                {
+                                    "conference": false,
+                                    "queueId": "1521cd3a-9aad-415b-b26a-121d1909ea61",
+                                    "segmentEnd": "2025-05-09T12:55:10.045Z",
+                                    "segmentStart": "2025-05-09T12:55:09.982Z",
+                                    "segmentType": "alert"
+                                },
+                                {
+                                    "conference": false,
+                                    "disconnectType": "client",
+                                    "queueId": "1521cd3a-9aad-415b-b26a-121d1909ea61",
+                                    "segmentEnd": "2025-05-09T13:01:28.353Z",
+                                    "segmentStart": "2025-05-09T12:55:10.045Z",
+                                    "segmentType": "interact"
+                                },
+                                {
+                                    "conference": false,
+                                    "disconnectType": "client",
+                                    "queueId": "1521cd3a-9aad-415b-b26a-121d1909ea61",
+                                    "segmentEnd": "2025-05-09T13:01:30.537Z",
+                                    "segmentStart": "2025-05-09T13:01:28.353Z",
+                                    "segmentType": "wrapup",
+                                    "wrapUpCode": "1603277c-a7d7-47c5-8b20-c46b088810e6",
+                                    "wrapUpNote": "Sr. Miguel pago lo realizo a la tarjeta, "
+                                }
+                            ]
+                        }
+                    ],
+                    "attributes": {
+                        "canal_origen": "557.19",
+                        "sample": "",
+                        "Url": "https://dzw8zelxhdsbz.cloudfront.net/Cobranza/index.html?identity_code=118027759&dnis=952646016&agente=HUAYTE CAMACHO LESLY JACQUELINE&conversationId=00f4f2af-ffbc-4a3f-8baf-d3eea0472afc&participantId=30afe512-8a2d-4c69-ab1f-6be1ffa150d9&queueId=1521cd3a-9aad-415b-b26a-121d1909ea61&ciudad=TRUJILLO",
+                        "marca_admision": "INDEPENDIENTE",
+                        "scriptId": "866be683-0715-43ad-82f2-3e7ae5e40bd4",
+                        "pago_digital": "1",
+                        "urlICS": "https://ics.bancoripley.com.pe/iCSMain/dialer?identity=0042424147759&telephone_number=952646016&customer=BANCORIPLEY&dialerApp=icsweb",
+                        "abandonMilliseconds": "25000",
+                        "dialerContactId": "118027759",
+                        "dialerContactListId": "a5bf7824-905d-4c32-a030-b49e75309bd9",
+                        "dialerCampaignId": "6d1a2155-a1f8-4e5d-8ed7-9ea1ea53bca1",
+                        "dialerInteractionId": "064c6999-80d3-4e39-9d0a-67160b228d38",
+                        "promesas_rotas": "1"
+                    }
+                }
+            ]
+        }
+    ]
+}
