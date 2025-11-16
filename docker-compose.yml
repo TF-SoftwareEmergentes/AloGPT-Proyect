@@ -74,11 +74,11 @@ services:
       NEXT_PUBLIC_LEGAL_CHAT_URL: ${NEXT_PUBLIC_API_URL}/legal
       NODE_ENV: production
     ports:
-      - "3000:3000"
+      - "3001:3001"
     networks:
       - ai-network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/"]
+      test: ["CMD", "curl", "-f", "http://localhost:3001/"]
       interval: 30s
       timeout: 10s
       retries: 3
