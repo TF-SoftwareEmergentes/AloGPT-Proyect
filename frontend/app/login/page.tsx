@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { API_BASE_URL } from '@/lib/config'
 
 export default function LoginPage() {
   const [view, setView] = useState<'role' | 'login' | 'register'>('role')
@@ -19,7 +20,7 @@ export default function LoginPage() {
     setError('')
     
     try {
-      const response = await fetch(`http://localhost:8000/api/auth/login?email=${encodeURIComponent(email)}&contraseña=${encodeURIComponent(password)}`)
+      const response = await fetch(`${API_BASE_URL}/api/auth/login?email=${encodeURIComponent(email)}&contraseña=${encodeURIComponent(password)}`)
       
       if (!response.ok) {
         const data = await response.json()
@@ -54,7 +55,7 @@ export default function LoginPage() {
     setError('')
     
     try {
-      const response = await fetch(`http://localhost:8000/api/auth/register?email=${encodeURIComponent(email)}&contraseña=${encodeURIComponent(password)}&nombre=${encodeURIComponent(nombre)}&rol=${encodeURIComponent(rol)}`)
+      const response = await fetch(`${API_BASE_URL}/api/auth/register?email=${encodeURIComponent(email)}&contraseña=${encodeURIComponent(password)}&nombre=${encodeURIComponent(nombre)}&rol=${encodeURIComponent(rol)}`)
       
       if (!response.ok) {
         const data = await response.json()

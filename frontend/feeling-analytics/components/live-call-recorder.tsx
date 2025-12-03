@@ -14,6 +14,7 @@ import {
   AlertDialogAction,
 } from '@/components/ui/alert-dialog'
 import { Mic, MicOff, Phone, PhoneOff, AlertCircle, CheckCircle, Loader2, Volume2 } from 'lucide-react'
+import { API_BASE_URL } from '@/lib/config'
 
 interface ChunkAnalysis {
   channel: string
@@ -283,7 +284,7 @@ export function LiveCallRecorder({ agentEmail, onCallEnd }: LiveCallRecorderProp
       formData.append('audio', wavBlob, 'chunk.wav')
       formData.append('channel', 'caller')
 
-      const response = await fetch('http://localhost:8000/api/feeling-analytics/live/analyze-chunk', {
+      const response = await fetch(`${API_BASE_URL}/api/feeling-analytics/live/analyze-chunk`, {
         method: 'POST',
         body: formData,
         signal: abortControllerRef.current.signal
@@ -357,7 +358,7 @@ export function LiveCallRecorder({ agentEmail, onCallEnd }: LiveCallRecorderProp
 
       console.log('📤 Finalizando llamada con:', { agentEmail, agentName })
 
-      const response = await fetch('http://localhost:8000/api/feeling-analytics/live/end-call', {
+      const response = await fetch(`${API_BASE_URL}/api/feeling-analytics/live/end-call`, {
         method: 'POST',
         body: formData,
       })

@@ -8,6 +8,7 @@ import { LiveCallRecorder } from '@/feeling-analytics/components/live-call-recor
 import { HistoryPage } from '@/feeling-analytics/pages/history-page'
 import { SentimentAnalysisResult } from '@/types/sentiment'
 import { Phone, PhoneOff, History } from 'lucide-react'
+import { API_BASE_URL } from '@/lib/config'
 
 export default function LiveCallPage() {
   const [authorized, setAuthorized] = useState(false)
@@ -36,7 +37,7 @@ export default function LiveCallPage() {
 
   const loadHistory = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/records?limit=50')
+      const response = await fetch(`${API_BASE_URL}/api/records?limit=50`)
       if (response.ok) {
         const data = await response.json()
         setHistory(data || [])

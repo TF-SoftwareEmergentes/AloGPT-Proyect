@@ -2,6 +2,7 @@
 
 import { Sidebar } from '@/components/sidebar'
 import { useEffect, useState } from 'react'
+import { API_BASE_URL } from '@/lib/config'
 
 export default function CallerPerformancePage() {
   const [authorized, setAuthorized] = useState(false)
@@ -28,7 +29,7 @@ export default function CallerPerformancePage() {
 
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:8000/api/statistics')
+        const res = await fetch(`${API_BASE_URL}/api/statistics`)
         const data = await res.json()
         setStats({
           confianza_promedio: data.confianza_promedio,

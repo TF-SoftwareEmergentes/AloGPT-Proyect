@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { API_BASE_URL } from '@/lib/config'
 
 export default function DashboardPage() {
   const [stats, setStats] = useState({
@@ -29,35 +30,35 @@ export default function DashboardPage() {
     const fetchAllData = async () => {
       try {
         // Fetch statistics
-        const statsRes = await fetch('http://localhost:8000/api/statistics')
+        const statsRes = await fetch(`${API_BASE_URL}/api/statistics`)
         if (statsRes.ok) {
           const statsData = await statsRes.json()
           setStats(statsData)
         }
         
         // Fetch records
-        const recordsRes = await fetch('http://localhost:8000/api/records?limit=10')
+        const recordsRes = await fetch(`${API_BASE_URL}/api/records?limit=10`)
         if (recordsRes.ok) {
           const recordsData = await recordsRes.json()
           setRecords(Array.isArray(recordsData) ? recordsData : [])
         }
         
         // Fetch agent metrics
-        const agentsRes = await fetch('http://localhost:8000/api/metrics/agents')
+        const agentsRes = await fetch(`${API_BASE_URL}/api/metrics/agents`)
         if (agentsRes.ok) {
           const agentsData = await agentsRes.json()
           setAgentMetrics(Array.isArray(agentsData) ? agentsData : [])
         }
         
         // Fetch emotion metrics
-        const emotionsRes = await fetch('http://localhost:8000/api/metrics/emotions')
+        const emotionsRes = await fetch(`${API_BASE_URL}/api/metrics/emotions`)
         if (emotionsRes.ok) {
           const emotionsData = await emotionsRes.json()
           setEmotionMetrics(typeof emotionsData === 'object' ? emotionsData : {})
         }
         
         // Fetch daily metrics
-        const dailyRes = await fetch('http://localhost:8000/api/metrics/daily?days=30')
+        const dailyRes = await fetch(`${API_BASE_URL}/api/metrics/daily?days=30`)
         if (dailyRes.ok) {
           const dailyData = await dailyRes.json()
           setDailyMetrics(Array.isArray(dailyData) ? dailyData : [])

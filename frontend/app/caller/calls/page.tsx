@@ -2,6 +2,7 @@
 
 import { Sidebar } from '@/components/sidebar'
 import { useEffect, useState } from 'react'
+import { API_BASE_URL } from '@/lib/config'
 
 export default function CallerCallsPage() {
   const [authorized, setAuthorized] = useState(false)
@@ -24,7 +25,7 @@ export default function CallerCallsPage() {
 
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:8000/api/records?limit=20')
+        const res = await fetch(`${API_BASE_URL}/api/records?limit=20`)
         const data = await res.json()
         setRecords(data)
       } catch (error) {

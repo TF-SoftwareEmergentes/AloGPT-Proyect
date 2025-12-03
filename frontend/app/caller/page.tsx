@@ -2,6 +2,7 @@
 
 import { Sidebar } from '@/components/sidebar'
 import { useEffect, useState } from 'react'
+import { API_BASE_URL } from '@/lib/config'
 
 export default function CallerPage() {
   const [authorized, setAuthorized] = useState(false)
@@ -30,11 +31,11 @@ export default function CallerPage() {
       // Fetch statistics
       const fetchData = async () => {
         try {
-          const statsRes = await fetch('http://localhost:8000/api/statistics')
+          const statsRes = await fetch(`${API_BASE_URL}/api/statistics`)
           const statsData = await statsRes.json()
           setStats(statsData)
           
-          const recordsRes = await fetch('http://localhost:8000/api/records?limit=5')
+          const recordsRes = await fetch(`${API_BASE_URL}/api/records?limit=5`)
           const recordsData = await recordsRes.json()
           setRecentCalls(recordsData)
         } catch (error) {

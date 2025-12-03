@@ -56,9 +56,22 @@ app = FastAPI(
     version="2.0.0"
 )
 
+# CORS: Allow localhost for development and Cloud Run URLs for production
+allowed_origins = [
+    "http://localhost:3000",
+    "http://localhost:3001", 
+    "http://localhost:3002",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:3001",
+    "http://127.0.0.1:3002",
+    # Cloud Run URLs
+    "https://alogpt-frontend-296826525510.us-central1.run.app",
+    "https://alogpt-backend-296826525510.us-central1.run.app",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:3001", "http://localhost:3002", "http://127.0.0.1:3002"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

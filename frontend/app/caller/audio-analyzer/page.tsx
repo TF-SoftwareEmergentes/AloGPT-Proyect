@@ -10,6 +10,7 @@ import { AudioUploader } from '@/feeling-analytics/pages/audio-uploader-page'
 import { ResultsPage } from '@/feeling-analytics/pages/results-page'
 import { HistoryPage } from '@/feeling-analytics/pages/history-page'
 import { SentimentAnalysisResult } from '@/types/sentiment'
+import { API_BASE_URL } from '@/lib/config'
 
 export default function AudioAnalyzerPage() {
   const [authorized, setAuthorized] = useState(false)
@@ -39,7 +40,7 @@ export default function AudioAnalyzerPage() {
 
   const loadHistory = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/records?limit=50')
+      const response = await fetch(`${API_BASE_URL}/api/records?limit=50`)
       if (response.ok) {
         const data = await response.json()
         setHistory(data || [])
@@ -92,7 +93,7 @@ export default function AudioAnalyzerPage() {
 
       setAnalysisProgress(30)
 
-      const response = await fetch('http://localhost:8000/api/feeling-analytics/analyze', {
+      const response = await fetch(`${API_BASE_URL}/api/feeling-analytics/analyze`, {
         method: 'POST',
         body: formData,
       })

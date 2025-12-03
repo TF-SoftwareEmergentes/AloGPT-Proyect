@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { API_BASE_URL } from '@/lib/config'
 
 export default function HistoricalPage() {
   const [records, setRecords] = useState<any[]>([])
@@ -14,7 +15,7 @@ export default function HistoricalPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const statsRes = await fetch('http://localhost:8000/api/statistics')
+        const statsRes = await fetch(`${API_BASE_URL}/api/statistics`)
         const statsData = await statsRes.json()
         setStats({
           total_llamadas: statsData.total_llamadas || 0,
@@ -22,7 +23,7 @@ export default function HistoricalPage() {
           promesas_cumplidas: statsData.promesas_cumplidas || 0,
         })
 
-        const recordsRes = await fetch('http://localhost:8000/api/records?limit=100')
+        const recordsRes = await fetch(`${API_BASE_URL}/api/records?limit=100`)
         const recordsData = await recordsRes.json()
         setRecords(Array.isArray(recordsData) ? recordsData : [])
       } catch (error) {

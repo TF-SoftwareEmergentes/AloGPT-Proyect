@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { API_BASE_URL } from '@/lib/config'
 
 export default function LiveCallsPage() {
   const [records, setRecords] = useState([])
@@ -9,7 +10,7 @@ export default function LiveCallsPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:8000/api/records?limit=10')
+        const res = await fetch(`${API_BASE_URL}/api/records?limit=10`)
         const data = await res.json()
         setRecords(data)
       } catch (error) {
