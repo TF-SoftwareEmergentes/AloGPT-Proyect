@@ -36,6 +36,11 @@ services:
         condition: service_healthy
     environment:
       DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/ai_agents
+      DB_HOST: postgres
+      DB_NAME: ai_agents
+      DB_USER: postgres
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_PORT: "5432"
       HF_TOKEN: ${HF_TOKEN}
       OPENAI_API_KEY: ${OPENAI_API_KEY}
       USE_LOCAL_MODELS: ${USE_LOCAL_MODELS}
@@ -50,11 +55,11 @@ services:
     networks:
       - ai-network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:8000/health')\" || exit 1"]
       interval: 30s
       timeout: 10s
-      retries: 3
-      start_period: 60s
+      retries: 5
+      start_period: 300s
     logging:
       driver: "json-file"
       options:
@@ -74,11 +79,11 @@ services:
       NEXT_PUBLIC_LEGAL_CHAT_URL: ${NEXT_PUBLIC_API_URL}/legal
       NODE_ENV: production
     ports:
-      - "3001:3001"
+      - "3001:3000"
     networks:
       - ai-network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3001/"]
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3

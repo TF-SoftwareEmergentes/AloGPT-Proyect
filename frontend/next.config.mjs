@@ -10,7 +10,6 @@ const nextConfig = {
     unoptimized: true,
   },
   output: 'standalone',
-  outputFileTracingRoot: '/frontend',
 }
 
 export default nextConfig

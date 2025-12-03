@@ -5,13 +5,40 @@ import tempfile
 import os
 from dotenv import load_dotenv
 import traceback
-from .services.sentiment_analyzer import SentimentAnalyzer
-from .services.database_service import DatabaseService
+
+# Try to import real analyzer, fallback to mock
+try:
+    from .services.sentiment_analyzer import SentimentAnalyzer
+    USE_MOCK_ANALYZER = False
+except ImportError as e:
+    print(f"⚠️ Could not import real SentimentAnalyzer: {e}")
+    print("📦 Using mock analyzer instead")
+    from .services.sentiment_analyzer_mock import SentimentAnalyzer
+    USE_MOCK_ANALYZER = True
+
+# Try to import real database service, fallback to mock
+try:
+    from .services.database_service import DatabaseService
+    # Test connection
+    _test_db = DatabaseService()
+    _test_db.get_connection()
+    USE_MOCK_DB = False
+except Exception as e:
+    print(f"⚠️ Could not connect to PostgreSQL: {e}")
+    print("📦 Using in-memory database instead")
+    from .services.database_service_mock import DatabaseService
+    USE_MOCK_DB = True
 from typing import Optional
 import uuid
 from datetime import datetime
-import torch
-import numpy as np
+
+# Optional: try to import torch/numpy but don't fail if not available
+try:
+    import torch
+    import numpy as np
+except ImportError:
+    torch = None
+    np = None
 
 load_dotenv()
 
