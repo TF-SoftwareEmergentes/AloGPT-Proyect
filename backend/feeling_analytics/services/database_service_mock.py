@@ -174,6 +174,51 @@ class DatabaseService:
             'client': client
         }
     
+    def get_record_by_id_call(self, id_call: str) -> Optional[dict]:
+        """Get a specific record by id_call - returns properly structured data for frontend"""
+        caller = self._caller_results.get(id_call)
+        client = self._client_results.get(id_call)
+        
+        if not caller and not client:
+            return None
+        
+        # Build structured response matching what frontend expects
+        record = {
+            'id_call': id_call,
+            'filename': caller.get('filename', id_call) if caller else id_call,
+            'agent_email': caller.get('agent_email', 'unknown') if caller else 'unknown',
+            'agent_name': caller.get('agent_name', 'Agent') if caller else 'Agent',
+            'analysis_date': caller.get('analysis_date') if caller else datetime.now().isoformat(),
+            'is_stereo': True,
+            'caller': {
+                'final_score': caller.get('final_score', 0) if caller else 0,
+                'valence_score': caller.get('valence_score', 0) if caller else 0,
+                'arousal_score': caller.get('arousal_score', 0) if caller else 0,
+                'all_scores': caller.get('all_scores', {}) if caller else {},
+                'advice': caller.get('advice', '') if caller else '',
+                'transcript': caller.get('transcript', '') if caller else '',
+                'top_emotions': caller.get('top_emotions', []) if caller else [],
+            },
+            'client': {
+                'final_score': client.get('final_score', 0) if client else 0,
+                'valence_score': client.get('valence_score', 0) if client else 0,
+                'arousal_score': client.get('arousal_score', 0) if client else 0,
+                'all_scores': client.get('all_scores', {}) if client else {},
+                'advice': client.get('advice', '') if client else '',
+                'transcript': client.get('transcript', '') if client else '',
+                'top_emotions': client.get('top_emotions', []) if client else [],
+            },
+            'comparison': {
+                'score_difference': 0,
+                'emotional_synchrony': 0.75,
+                'significant_emotion_differences': {},
+                'dominant_speaker': 'caller'
+            },
+            'advice': caller.get('advice', '') if caller else ''
+        }
+        
+        return record
+    
     def get_statistics(self, agent_email: str = None) -> dict:
         """Get statistics"""
         records = self.get_records(agent_email=agent_email)
