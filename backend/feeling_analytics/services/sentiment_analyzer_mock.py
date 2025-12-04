@@ -16,6 +16,11 @@ class SentimentAnalyzer:
     def __init__(self):
         print("🧪 Using MOCK SentimentAnalyzer (no ML models)")
         self.ready = True
+    
+    def analyze_audio(self, audio_file_path: str, filename: str, analyze_channels: str = "both") -> dict:
+        """Main method called by the API - delegates to analyze_file"""
+        print(f"📝 Mock analyze_audio: {filename} (channels: {analyze_channels})")
+        return self.analyze_file(audio_file_path)
         
     def analyze_file(self, file_path: str) -> dict:
         """Simulate analysis of an audio file"""
@@ -79,11 +84,18 @@ class SentimentAnalyzer:
             reverse=True
         )[:5]
         
+        # Calculate final_score from valence (convert -1,1 to 0-100)
+        final_score = (valence + 1) / 2 * 100
+        
         return {
             "channel": channel_name,
+            "final_score": round(final_score, 2),
             "valence": round(valence, 3),
+            "valence_score": round(valence, 3),
             "arousal": round(arousal, 3),
+            "arousal_score": round(arousal, 3),
             "emotions": {k: round(v, 3) for k, v in emotions.items()},
+            "all_scores": {k: round(v, 3) for k, v in emotions.items()},
             "top_emotions": [{"name": name, "score": round(score, 3)} for name, score in sorted_emotions],
             "transcription": f"[Mock transcription for {channel_name}] This is a simulated call transcript..."
         }
@@ -94,6 +106,12 @@ class SentimentAnalyzer:
             "valence_diff": round(random.uniform(-0.3, 0.3), 3),
             "arousal_diff": round(random.uniform(-0.2, 0.2), 3),
             "sync_score": round(random.uniform(0.5, 0.9), 3),
+            "score_difference": round(random.uniform(-0.3, 0.3), 3),
+            "emotional_synchrony": round(random.uniform(0.5, 0.95), 3),
+            "significant_emotion_differences": {
+                "Joy": round(random.uniform(-0.2, 0.2), 3),
+                "Anger": round(random.uniform(-0.1, 0.1), 3)
+            },
             "dominant_speaker": random.choice(["caller", "client"])
         }
     

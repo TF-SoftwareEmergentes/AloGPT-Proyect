@@ -107,7 +107,30 @@ class DatabaseService:
         self._client_results[id_call] = record
         return id_call
     
-    def get_records(self, agent_email: str = None, limit: int = 100) -> List[dict]:
+    def save_result(self, result: dict) -> dict:
+        """Save complete analysis result (caller + client) - main API method"""
+        agent_email = result.get('agent_email', 'unknown')
+        
+        # Save caller result if present
+        if 'caller' in result:
+            self.save_caller_result(result, agent_email)
+        
+        # Save client result if present  
+        if 'client' in result:
+            self.save_client_result(result, agent_email)
+        
+        # Store in sentiment analysis list
+        self._sentiment_analysis.append({
+            'id_call': result.get('id_call'),
+            'agent_email': agent_email,
+            'timestamp': datetime.now().isoformat(),
+            'result': result
+        })
+        
+        print(f"💾 Mock DB: Saved result for call {result.get('id_call')}")
+        return {"saved": True, "id_call": result.get('id_call')}
+    
+    def get_records(self, agent_email: str = None, limit: int = 100, offset: int = 0) -> List[dict]:
         """Get all records, optionally filtered by agent"""
         records = []
         
@@ -135,7 +158,7 @@ class DatabaseService:
         
         # Sort by date descending
         records.sort(key=lambda x: x.get('analysis_date', ''), reverse=True)
-        return records[:limit]
+        return records[offset:offset + limit]
     
     def get_record_by_id(self, id_call: str) -> Optional[dict]:
         """Get a specific record by ID"""

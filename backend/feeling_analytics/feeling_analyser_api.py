@@ -6,15 +6,25 @@ import os
 from dotenv import load_dotenv
 import traceback
 
+# Check if we should use mock analyzer (Cloud Run or explicit env var)
+FORCE_MOCK = os.getenv('USE_MOCK_ANALYZER', 'false').lower() == 'true'
+IS_CLOUD_RUN = os.getenv('K_SERVICE') is not None  # K_SERVICE is set by Cloud Run
+
 # Try to import real analyzer, fallback to mock
-try:
-    from .services.sentiment_analyzer import SentimentAnalyzer
-    USE_MOCK_ANALYZER = False
-except ImportError as e:
-    print(f"⚠️ Could not import real SentimentAnalyzer: {e}")
-    print("📦 Using mock analyzer instead")
+if FORCE_MOCK or IS_CLOUD_RUN:
+    print(f"☁️ Cloud environment detected (K_SERVICE={os.getenv('K_SERVICE')})")
+    print("📦 Using mock analyzer for Cloud Run deployment")
     from .services.sentiment_analyzer_mock import SentimentAnalyzer
     USE_MOCK_ANALYZER = True
+else:
+    try:
+        from .services.sentiment_analyzer import SentimentAnalyzer
+        USE_MOCK_ANALYZER = False
+    except ImportError as e:
+        print(f"⚠️ Could not import real SentimentAnalyzer: {e}")
+        print("📦 Using mock analyzer instead")
+        from .services.sentiment_analyzer_mock import SentimentAnalyzer
+        USE_MOCK_ANALYZER = True
 
 # Try to import real database service, fallback to mock
 try:
@@ -80,20 +90,28 @@ app.add_middleware(
 @app.on_event("startup")
 async def startup():
     print("Iniciando API...")
+    print(f"☁️ IS_CLOUD_RUN: {IS_CLOUD_RUN}, USE_MOCK_ANALYZER: {USE_MOCK_ANALYZER}")
     try:
         db_service.create_tables()
         print("Base de datos lista")
     except Exception as e:
         print(f"Error en startup: {e}")
-    # Try to initialize heavy sentiment analyzer but don't fail startup if dependencies missing
+    # Initialize sentiment analyzer
     global sentiment_analyzer
     try:
         if sentiment_analyzer is None:
-            print("Inicializando SentimentAnalyzer (puede tardar)...")
+            print("Inicializando SentimentAnalyzer...")
             sentiment_analyzer = SentimentAnalyzer()
-            print("SentimentAnalyzer inicializado")
+            print(f"✅ SentimentAnalyzer inicializado (mock={USE_MOCK_ANALYZER})")
     except Exception as e:
-        print(f"Warning: no se pudo inicializar SentimentAnalyzer en startup: {e}")
+        print(f"❌ Error inicializando SentimentAnalyzer: {e}")
+        traceback.print_exc()
+        # Fallback to mock if real analyzer fails
+        if not USE_MOCK_ANALYZER:
+            print("🔄 Fallback to mock analyzer...")
+            from .services.sentiment_analyzer_mock import SentimentAnalyzer as MockAnalyzer
+            sentiment_analyzer = MockAnalyzer()
+            print("✅ Mock analyzer initialized as fallback")
 
 @app.get("/")
 async def root():
