@@ -33,8 +33,8 @@ export function Sidebar() {
     { label: 'Dashboard', href: '/dashboard' },
     { label: 'Histórico', href: '/dashboard/historical' },
     { label: 'Llamadas en Vivo', href: '/dashboard/live-calls' },
-    { label: 'Alertas Críticas', href: '/dashboard/alerts' },
-    { label: 'Análisis de Equipo', href: '/dashboard/team-analysis' },
+    { label: 'Alertas Críticas', href: '/dashboard/critical-alerts' },
+    { label: 'Análisis de Equipo', href: '/dashboard/team-analytics' },
     { label: 'Configuración', href: '/dashboard/settings' },
   ]
 
